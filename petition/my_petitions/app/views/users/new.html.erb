@@ -1,0 +1,42 @@
+<h1>Регистрация</h1>
+<%= form_for @user  do |f| %>
+<% if @user.errors.any? %>
+  <div class="error_massages">
+    <h2>Form is invalid</h2>
+    <ul>
+      <% @user.errors.full_massages.each do |messsage| %>
+        <li><%= message %></li>
+        <% end %>
+    </ul>
+   </div>
+<% end %>
+
+
+    <div class="field">
+    <%= f.label :Email %><br>
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :Имя %><br>
+    <%= f.text_field :first_name %>
+  </div>
+  <div class="field">
+    <%= f.label :Фамилия %><br>
+    <%= f.text_field :last_name %>
+  </div>
+  <div class="field">
+    <%= f.label :Пароль %><br>
+    <%= f.password_field :password %>
+  </div>
+  <div class="field">
+    <%= f.label :password_confirmation %><br>
+    <%= f.password_field :password_confirmation  %>
+  </div>
+  <!--
+<label>
+  <span>Пароль</span>
+<input type="password"  autocomplete="off" placeholder="Пароль" class="text password" name="pet_reg[pass]" tabindex="2" required="" data-validate="pass" >
+</label>  -->
+    <%= f.submit "Зарегистрироваться" %>
+
+<% end %>
