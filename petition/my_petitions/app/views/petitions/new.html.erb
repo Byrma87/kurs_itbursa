@@ -1,0 +1,17 @@
+<table>
+   <h1>Новая Петиция</h1>
+  <%= form_for @petition do  |f| %>
+ <div class="field">
+    <%= f.label :Название %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :Описание %><br>
+    <%= f.text_area :text %>
+  </div>
+    <%= user_id = current_user.id %><br>
+ 
+  <div class="actions">
+    <%= submit_tag 'Создать'%>
+  </div>
+<% end %>

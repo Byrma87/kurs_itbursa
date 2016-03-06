@@ -5,9 +5,9 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root to: 'sesions#index'
+  root to: 'sessions#index'
 
-  resources  :users, :petitions, :sesions 
+  resources  :users, :petitions, :sessions 
     
 
 

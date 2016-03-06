@@ -10,11 +10,12 @@ class PetitionsController < ApplicationController
   end
 
   def new
-
+    @petition = Petition.new
   end
 
   def create
-
+    @petition = Petition.new(petition_params)
+    redirect_to root_url
   end
 
   def edit
@@ -27,5 +28,8 @@ class PetitionsController < ApplicationController
 
   def destroy
 
+  end
+  def petition_params
+    params.require(:petition).permit(:title, :text)
   end
 end

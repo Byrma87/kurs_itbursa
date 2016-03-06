@@ -16,7 +16,7 @@ class UsersController < ApplicationController
     user = User.create(user_params)
     # render json: params[:user][:password_confirmation]
      # if @user_params.password == @user_params.password_confirmation
-    redirect_to  sesion_path(user)
+    redirect_to  sessions_path(user)
        # render "new"
      # end
   end
