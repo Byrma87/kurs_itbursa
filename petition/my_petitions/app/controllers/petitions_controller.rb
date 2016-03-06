@@ -1,7 +1,7 @@
 class PetitionsController < ApplicationController
   
   def index
-
+    render json: params
   end
 
   def show
@@ -14,7 +14,8 @@ class PetitionsController < ApplicationController
   end
 
   def create
-    @petition = Petition.new(petition_params)
+    @petition = Petition.create(petition_params)
+    # @petition.save
     redirect_to root_url
   end
 

@@ -3,7 +3,7 @@ class CreatePetitions < ActiveRecord::Migration
     create_table :petitions do |t|
       t.string :title
       t.text :text
-      t.string :user_id
+      t.belongs_to :user, index: true 
 
       t.timestamps null: false
     end

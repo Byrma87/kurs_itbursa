@@ -22,6 +22,9 @@ class SessionsController < ApplicationController
   def show
     @petitions = Petition.find(params[:id])
   end
+  
+  def login
+  end
 
   def destroy
     session[:user_id] = nil

@@ -11,6 +11,7 @@
     <div id="user_header">
     <tr>
   <th>Онлайн петиции нашего района</th>
+
   <% if current_user %>
    <th><%= current_user.email  %>
     <th><%=link_to "Выйти", session_path("rr"), method: "delete" %></th>
