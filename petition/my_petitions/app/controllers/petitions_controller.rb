@@ -1,7 +1,9 @@
 class PetitionsController < ApplicationController
+  before_action :autorize_user, only: [:new, :create]
   
   def index
-    render json: params
+    @petitions = Petition.all
+    @petitions = @petitions.where(user_id: current_user) if params[:my]
   end
 
   def show
@@ -14,9 +16,12 @@ class PetitionsController < ApplicationController
   end
 
   def create
-    @petition = Petition.create(petition_params)
-    # @petition.save
-    redirect_to root_url
+    @petition = current_user.petitions.new(petition_params)
+    if @petition.save
+      redirect_to @petition
+    else
+    render 'new'
+    end
   end
 
   def edit

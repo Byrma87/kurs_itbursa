@@ -1,8 +1,4 @@
 class SessionsController < ApplicationController
-  
-  def index
-    @petitions = Petition.all
-  end
 
   def new
   end
@@ -14,17 +10,11 @@ class SessionsController < ApplicationController
        session[:user_id] = user.id
        redirect_to root_url, notice: "Залогинились" 
      else
-       flash.now.alert = "Что то не подошло" 
+       flash.now.alert = "Не вырный логин либо пароль" 
        render "new"
      end
   end
 
-  def show
-    @petitions = Petition.find(params[:id])
-  end
-  
-  def login
-  end
 
   def destroy
     session[:user_id] = nil

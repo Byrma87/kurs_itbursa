@@ -1,4 +1,3 @@
-<table>
    <h1>Вход</h1>
   <%= form_tag sessions_path do  %>
  <div class="field">
@@ -9,9 +8,10 @@
     <%= label_tag :Пароль %><br>
     <%= password_field_tag :password %>
   </div>
-<tr>  </tr>>
+<tr>  </tr>
  
   <div class="actions">
     <%= submit_tag 'Войти'%>
   </div>
+
 <% end %>
