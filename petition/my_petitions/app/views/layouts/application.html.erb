@@ -27,12 +27,13 @@
 
 
     </div>
+    <div id="container"> 
     <% flash.each do |name, msg| %>
       <% content_tag :div, msg, id: "flash#{name}" %>
      <% end %>
 
     <%= yield %>
-
+</div>
     <th><%=link_to 'Все петиции', petitions_path %></th>
 
     <th><%=link_to 'Создать петицию', new_petition_path %></th>

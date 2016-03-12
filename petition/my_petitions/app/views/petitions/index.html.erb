@@ -1,26 +1,29 @@
 <table>
-   <% if params[:my] %>
-   
-   <h1>Мои петиции</h1>
-    <% else %>
-    <h1>Все петиции</h1>
-    <% end %>
-  <tr>
-    <th>Петиция</th>
+  <% if params[:my] %>
 
-    <th>Автор</th>
-</th>
+    <h1>Мои петиции</h1>
+  <% else %>
+    <h1>Все петиции</h1>
+  <% end %>
+  <tr>
+  <th>Петиция</th>
+
+<% unless params[:my] %>
+
+  <th>Автор</th>
+ <% end %>
   </tr>
 
 <% @petitions.each do |d| %>
   <tr>
+  <% unless params[:my] %>
   <td><%=link_to d.title, d %></td>
-
+  <% end %>
   <td><%= d.user.first_name  %></td>
-  <td><%=  %></td>
-
-  </tr>
+ <% if params[:my] %>
+    <th><%= button_to 'Изменить', edit_petition_path(d), method: :get %></th> 
+    <th><%= button_to 'Удалить', petition_path(d), method: :delete %></th> 
+    <% end %>
+</tr>
 <% end %>
-</table>
 
-<br />

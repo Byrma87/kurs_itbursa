@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new', as: 'login'
   get 'signup', to: 'users#new', as: 'signup'
   get 'logout', to: 'sessions#destroy', as: 'logout'
-
   # You can have the root of your site routed with "root"
 
 
@@ -14,7 +13,7 @@ Rails.application.routes.draw do
   resources  :users
   resources  :petitions
   resources  :sessions 
-    
+  resources  :votes
 
 
   # Example of regular route:
