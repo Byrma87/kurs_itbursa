@@ -4,7 +4,7 @@ class PetitionsController < ApplicationController
   def index
     @petitions = Petition.all
     @petitions = current_user.petitions if params[:my]
-
+    @votes = Vote.all
   end
 
   def show
@@ -23,6 +23,7 @@ class PetitionsController < ApplicationController
     if @petition.save
       redirect_to @petition
     else
+    flash.now.alert = "Ошибка создания петиции"
     render 'new'
     end
   end

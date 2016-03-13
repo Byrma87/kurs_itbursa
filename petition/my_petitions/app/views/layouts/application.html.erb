@@ -1,47 +1,71 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>MyPetitions</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-      <%= javascript_include_tag "application" %>
- <p class="notice"><%= notice %></p>
-       <p class="alert"><%= alert %></p>
+ <meta charset="utf-8">
+ <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+ <title><%= content_for?(:title) ? yield(:title) : "My Петиции" %></title>
   <%= csrf_meta_tags %>
+   <!--[if lt IE 9]>
+   <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+   <![endif]-->
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag "application" %>
+
+
 </head>
+
 <body>
-  <div id="container">
-    <div id="user_header">
-    <tr>
-  <th>Онлайн петиции нашего района</th>
 
-  <% if current_user %>
-   <th><%= current_user.email  %>
-    <th><%=link_to "Выйти", logout_path %></th>
-  <% else %>
-  <th><%=link_to 'Зарегистрироваться', new_user_path %> |
-   </th>
-  <th><%=link_to 'Войти', login_path %></th>
-  </tr>
+  <div class="navbar navbar-default navbar-static-top">
+    <div class="container">
 
-  <% end %>
-
-
+      <a class="navbar-brand" href="/">Онлайн петиции нашего района</a>
+      <div class="pull-right" style="margin: 10px">
+        <span>
+          <% if current_user %>
+            <%= current_user.email  %>
+            (<%=link_to "Выйти", logout_path %>)
+          <% else %>
+            <%=link_to 'Зарегистрироваться', new_user_path %>| 
+            <%=link_to 'Войти', login_path %>
+          <% end %>
+        </span>
+      </div>
     </div>
-    <div id="container"> 
-    <% flash.each do |name, msg| %>
-      <% content_tag :div, msg, id: "flash#{name}" %>
-     <% end %>
-
-    <%= yield %>
-</div>
-    <th><%=link_to 'Все петиции', petitions_path %></th>
-
-    <th><%=link_to 'Создать петицию', new_petition_path %></th>
-
-    <% if current_user %>
-      <th><%=link_to 'Мои петиции', petitions_path(my: true) %></th>
-    <% end %>
   </div>
-  </body>
 
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9">
+       <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, id: "flash_#{name}" %>
+        <% end %>
+        <div class="pull-left">
+        <%= yield %>
+        </div>
+         </div>
+        <div class="pull-right" style="margin: 10px">
+        <div class="col-lg-3">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list la">
+       
+              <li><h4><%=link_to 'Все петиции', petitions_path %></h4></li>
+              <li><h4><%=link_to 'Создать петицию', new_petition_path %></h4></li>
+              <% if current_user %>
+                <li><h4><%=link_to 'Мои петиции', petitions_path(my: true) %></h4></li>
+              <% end %> 
+           
+            </ul>
+          </div><!--/.well -->
+        </div><!--/span-->
+      </div><!--/row-->
+      </div>
+
+      <footer>
+        <p>&copy; Company 2016</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+  </body>
 </html>
