@@ -1,0 +1,26 @@
+<table>
+   <% if params[:my] %>
+   
+   <h1>Мои петиции</h1>
+    <% else %>
+    <h1>Все петиции</h1>
+    <% end %>
+  <tr>
+    <th>Петиция</th>
+
+    <th>Автор</th>
+</th>
+  </tr>
+
+<% @petitions.each do |d| %>
+  <tr>
+  <td><%=link_to d.title, d %></td>
+
+  <td><%= d.user.first_name  %></td>
+  <td><%=  %></td>
+
+  </tr>
+<% end %>
+</table>
+
+<br />

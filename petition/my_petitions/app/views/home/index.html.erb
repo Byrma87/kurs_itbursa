@@ -1,0 +1,19 @@
+<table>
+   <h1>Последние петиции</h1>
+  <tr>
+    <th>Петиция</th>
+
+    <th>Автор</th>
+</th>
+  </tr>
+
+<% @petitions.each do |d| %>
+  <tr>
+  <td><%=link_to d.title, d %></td>
+
+  <td><%= d.user.first_name  %></td>
+
+  </tr>
+<% end %>
+</table>
+
