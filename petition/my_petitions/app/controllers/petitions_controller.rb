@@ -5,6 +5,8 @@ class PetitionsController < ApplicationController
     @petitions = Petition.all
     @petitions = current_user.petitions if params[:my]
     @votes = Vote.all
+     # VotingEndingJob.perform_later
+    # UserMailer.mails_true(Petition.last).deliver_later
   end
 
   def show

@@ -15,7 +15,7 @@
   <td><%=link_to d.title, d %></td>
   <td><%= d.user.first_name  %></td>
   <td><%= label_tag @votes.where(petition_id: d.id).size %></td>
-   <td><%= d.created_at.strftime("%m/%d/%y %I:%M") %></td>
+   <td><%= d.created_at.strftime("%d/%m/%y %I:%M") %></td>
 
   </tr>
 <% end %>

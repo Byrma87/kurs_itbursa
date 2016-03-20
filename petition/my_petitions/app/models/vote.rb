@@ -1,5 +1,7 @@
 class Vote < ActiveRecord::Base
-has_many :petitions
-has_many :users
+belongs_to :petitions
+belongs_to :users
+
+validates :user_id, uniqueness: { scope: :petition_id}
 
 end
