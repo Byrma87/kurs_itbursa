@@ -3,11 +3,14 @@ class PetitionsController < ApplicationController
   
   def index
     @petitions = Petition.all
-    @petitions = @petitions.where(user_id: current_user) if params[:my]
+    @petitions = current_user.petitions if params[:my]
+    @votes = Vote.all
   end
 
   def show
   @petition = Petition.find(params[:id])
+  # byebug
+  @votes = @petition.votes.size
   # render json:@petition
   end
 
@@ -20,20 +23,31 @@ class PetitionsController < ApplicationController
     if @petition.save
       redirect_to @petition
     else
+    flash.now.alert = "Ошибка создания петиции"
     render 'new'
     end
   end
 
   def edit
-
+    # byebug
+    @petition = Petition.find(params[:id])
   end
 
   def update
+    @petition = Petition.find(params[:id])
 
+    if @petition.update(petition_params)
+      # flash.now[:notice] = "Петиция обновлена"
+      redirect_to @petition, notice: 'Петиция изменена'
+    else
+      render 'edit'
+    end
   end
 
   def destroy
-
+    @petition = Petition.find(params[:id])
+    @petition.destroy
+    redirect_to @petition, notice: 'Петиция удалена'
   end
   def petition_params
     params.require(:petition).permit(:title, :text)

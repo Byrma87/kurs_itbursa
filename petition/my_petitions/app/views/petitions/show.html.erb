@@ -2,7 +2,18 @@
 <table>
    <h1>Петиция</h1>
   <td><%= @petition.title %></td>
-<tr></tr>
+  <tr></tr>
+  <td><%= @petition.created_at.strftime("%m/%d/%y %I:%M") %></td>
+  <tr></tr>
   <td><%=  @petition.text %></td>
-  <td><%=  %></td>
-</table>
+  </table>
+ 
+<tr></tr>
+ <div class="field">
+  <%= label_tag "Голосов" %>
+  <%= label_tag @votes %>
+</div>
+<% unless  @petition.user_id.to_i == current_user.id.to_i %>
+  <th><%= button_to 'Проголосовать', votes_path({petition_id: @petition, user_id: current_user.id})%></th> 
+  <% end %>
+

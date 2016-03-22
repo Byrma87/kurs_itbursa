@@ -1,17 +1,21 @@
-<table>
-   <h1>Последние петиции</h1>
-  <tr>
-    <th>Петиция</th>
 
-    <th>Автор</th>
-</th>
-  </tr>
+<h1>Последние петиции</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <td>Петиция</td>
+      <td>Автор</td>
+      <td>Голоса</td>
+      <td>Дата создания</td>
+    </tr>
+  </thead>
 
 <% @petitions.each do |d| %>
   <tr>
   <td><%=link_to d.title, d %></td>
-
   <td><%= d.user.first_name  %></td>
+  <td><%= label_tag @votes.where(petition_id: d.id).size %></td>
+   <td><%= d.created_at.strftime("%m/%d/%y %I:%M") %></td>
 
   </tr>
 <% end %>
