@@ -24,16 +24,19 @@
   <% if params[:my] %>
   <td><%=link_to d.title, d %></td>
   <td><%= d.user.first_name  %></td>
-  <th><%= button_to 'Изменить', edit_petition_path(d), method: :get %> </th> 
-  <th><%= button_to 'Удалить', petition_path(d), method: :delete %></th>
+  <% unless d.expired_days(d) %>
+    <th><%= button_to 'Изменить', edit_petition_path(d), method: :get %> </th> 
+    <th><%= button_to 'Удалить', petition_path(d), method: :delete %></th>
+    <% end %>
     <% else %>
   <td><%=link_to d.title, d %></td>
   <td><%= d.user.first_name  %></td>
   <td><%= label_tag @votes.where(petition_id: d.id).size %></td>
-   <td><%= d.created_at.strftime("%m/%d/%y %I:%M") %></td>
+   <td><%= d.created_at.strftime("%d/%m/%y %I:%M") %></td>
 </div>
   <% end %>
    
 </tr>
 <% end %>
+
 </table>
